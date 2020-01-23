@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404
 from .models import Product
 from django.core.paginator import Paginator
-from django.views.generic import (
-    DetailView
-)
+from django.views.generic import DetailView
+    
 # Create your views here.
 
 def home(request):
@@ -18,3 +17,4 @@ def home(request):
 
 class Productdetail(DetailView):
     model = Product
+    template_name = 'product-page.html'
