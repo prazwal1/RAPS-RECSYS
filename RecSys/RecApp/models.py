@@ -11,4 +11,6 @@ class Product(models.Model):
     product_category = models.CharField(max_length=100)
     slug = models.SlugField(null=True)
     def get_absolute_url(self):
-        return reverse('Productdetail',kwargs={'slug': self.slug})
+        return reverse('Productdetail', args=[str(self.product_id)])
+    class Meta:
+        ordering = ['?']

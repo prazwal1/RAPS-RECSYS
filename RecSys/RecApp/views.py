@@ -1,20 +1,15 @@
 from django.shortcuts import render , get_object_or_404
 from .models import Product
 from django.core.paginator import Paginator
-from django.views.generic import DetailView
+from django.views.generic import DetailView,ListView
     
 # Create your views here.
 
-def home(request):
-    
-    products = Product.objects.all()
-    paginator = Paginator(products, 20)
-    page = request.GET.get('page')
 
-    products = paginator.get_page(page)
-
-    return render(request, 'home.html',{'products':products})
-
+class ProductList(ListView):
+    model = Product
+    template_name = "home.html"
+    paginate_by = 30
 class Productdetail(DetailView):
     model = Product
     template_name = 'product-page.html'
