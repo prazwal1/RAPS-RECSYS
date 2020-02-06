@@ -16,17 +16,117 @@
   <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+   <style type="text/css">
+    #recommend {
+      position : absolute;
+      top : 120px;
+      left : 30px;
+      height : 550px;
+      width : 200px;
+      border: 3px outset rgba(43,116,164,0.74);
+      border-radius: 6px;
+      
+    }
+    #main {
+      position : absolute;
+      top : 125px;
+      width : 1200px;
+      height : 542px;
+      left : 280px;
+      outline: 2px inset #2B74A4;
+      outline-offset: 2px;
+      border: 2px dashed rgba(50,134,190,0.52);
+    }
+    #line {
+      height: 10px;
+	    border: 0;
+	    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+    }
+
+    #button {
+       display: inline-block;
+       padding: 15px 25px;
+       font-size: 14px;
+       cursor: pointer;
+       text-align: center;
+       text-decoration: none;
+       outline: none;
+       color: #fff;
+       background-color: rgba(43,116,164,0.74);
+       border: none;
+       border-radius: 15px;
+       box-shadow: 0 9px #999;
+    }
+    #button:hover {background-color: #3e8e41}
+
+  #button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    
+
+  </style>
 </head>
 
 <body>
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+        <!-- Navbar brand -->
+        <span class="navbar-brand">Categories:</span>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">All
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Shirts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sport wears</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Outwears</a>
+            </li>
+
+          </ul>
+          <!-- Links -->
+
+          <form class="form-inline">
+            <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div>
+          </form>
+        </div>
+        <!-- Collapsible content -->
+
+      </nav>
+      <!--/.Navbar-->
 
  
   <!--Main layout-->
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
+     <div id="recommend">
+      <h2><strong>YOU MAY LIKE</strong></h2>
+      <hr id="line">
+      
+      </div>
 
       <!--Grid row-->
-      <div class="row wow fadeIn">
+      <div id="main" class="row wow fadeIn">
 
         <!--Grid column-->
         <div class="col-md-6 mb-4">
@@ -46,23 +146,32 @@
               <a href="">
                 <span class="badge purple mr-1">{{ object.product_category }}</span>
               </a>
-               <h5>
+              <br>
+               <h2>
                   <strong>
-                    <a href="" class="dark-grey-text">{{ object.product_name }}
+                    <a href="" class="dark-grey-text"><strong>{{ object.product_name }}</strong>
                       <span class="badge badge-pill danger-color">NEW</span>
                     </a>
                   </strong>
-                </h5>
+                </h2>
+                <h4 class="font-weight-bold blue-text">
+                  <strong>${{object.price}}</strong>
+                </h4>
+                <h5><strong>Rating: </strong>{{object.ratings}}/5</h5>
+            </div>
+            <div>
+            <button id="button">Buy Now</button>
+            <button id="button">Add to Cart</button>
             </div>
 
-           
+      
+            <hr id="line">
 
             <p class="lead font-weight-bold">Description</p>
-
-            <p>{{object.product_weight_g}}</p>
-            <p>{{object.product_length_cm}}</p>
-            <p>{{object.product_height_cm}}</p>
-            <p>{{object.product_weidth_cm}}</p>
+            <p><strong>Weight:</strong>{{object.product_weight_g}}</p>
+            <p><strong>Length:</strong>{{object.product_length_cm}}</p>
+            <p><strong>Height:</strong>{{object.product_height_cm}}</p>
+            <p><strong>Width:</strong>{{object.product_width_cm}}</p>
 
 
         </div>
