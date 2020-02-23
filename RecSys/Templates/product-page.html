@@ -1,3 +1,4 @@
+{% load recsys_tags %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -121,6 +122,10 @@
     <div class="container dark-grey-text mt-5">
      <div id="recommend">
       <h2><strong>YOU MAY LIKE</strong></h2>
+      
+      {% for product in object.recommend  %}
+      <li>{{product.product_name}}</li>
+      {% endfor %}
       <hr id="line">
       
       </div>
