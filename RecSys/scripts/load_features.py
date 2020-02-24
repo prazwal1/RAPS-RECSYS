@@ -6,4 +6,4 @@ def run():
     next(reader)
     Feature.objects.all().delete()
     for row in reader:
-        Feature.objects.create(product_id = row[1],product_index = row[0], seller_index = row[2], category_index = row[3], review_score = row[4])
+        Feature.objects.create(product_id = row[1],product_index = row[0], seller_index = row[3], category_index = row[4], review_score = row[2])

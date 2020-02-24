@@ -1,4 +1,3 @@
-{% load recsys_tags %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -124,7 +123,7 @@
       <h2><strong>YOU MAY LIKE</strong></h2>
       
       {% for product in object.recommend  %}
-      <li>{{product.product_name}}</li>
+      <li><a href="{{ product.get_absolute_url }}">{{product.product_name}}</a></li>
       {% endfor %}
       <hr id="line">
       

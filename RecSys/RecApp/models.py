@@ -23,7 +23,7 @@ class Product(models.Model):
         recommendation = x.get_recommendation(item_id)
         return recommendation
 class Feature(models.Model):
-    product_id = models.OneToOneField(Product,max_length=150,db_index= True, unique= True,on_delete=models.CASCADE )
+    product_id = models.OneToOneField(Product,max_length=150,db_index= True, unique= True, on_delete = models.CASCADE)
     product_index = models.IntegerField(primary_key=True)
     review_score = models.FloatField()
     seller_index = models.IntegerField()

@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'RecSys.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'RecSys',
-        'USER': 'RecSys',
+        'NAME': 'RecSys1',
+        'USER': 'Prazwal',
         'PASSWORD': '123abc',
 }
 }
