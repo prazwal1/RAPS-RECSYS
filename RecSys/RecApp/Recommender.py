@@ -1,4 +1,5 @@
 from sklearn.metrics.pairwise import cosine_similarity
+import random
 def get_product_id(iid):
     from .models import Feature
     product = Feature.objects.get(pk=iid)
@@ -27,7 +28,14 @@ def get_item_id(pid):
     feature = Feature.objects.get(product_id = pid)
     item_id = feature.product_index
     return item_id
-
+def get_review_score():
+    from .models import Feature
+    obj = Feature.objects.order_by('-review_score')
+    obj = obj[:13970]
+    items = list(obj)
+    random.shuffle(items)
+    return items[:10]
+    
 
 
 class ContentBasedRecommender:
@@ -50,4 +58,14 @@ class ContentBasedRecommender:
         products = []
         for i in range (0,5):
             products.append(get_product_id(similar_items_filtered[i][0]))
+        return products
+
+class PopularityBasedRecommender:
+    MODEL_NAME = "Popularity-Based"
+    def __init__(self):
+        self.features = get_review_score()
+    def get_recommendation(self):
+        products = []
+        for item in self.features:
+            products.append(item.product_id)
         return products

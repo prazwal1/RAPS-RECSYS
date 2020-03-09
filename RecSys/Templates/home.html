@@ -1,3 +1,4 @@
+{% load RecApp_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -94,10 +95,13 @@
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
       <div id="recommend">
-      <h2><strong>YOU MAY LIKE</strong></h2>
+      <h2><strong>Most Rated Products</strong></h2>
       <hr id="line">
-      
-      </div>
+      {% Popular_item as items %}
+      {% for item in items %}
+      <li><a href="{{ item.get_absolute_url }}" >{{item.product_name}}</a></li>
+      {% endfor %}
+    </div>
 
         <!--Grid row-->
         <div  id="main" class="row wow fadeIn">
