@@ -35,6 +35,10 @@ def get_review_score():
     items = list(obj)
     random.shuffle(items)
     return items[:10]
+def get_sales_count():
+    from .models import Feature
+    obj = Feature.objects.order_by('-sales_count')
+    return obj [:10]
     
 
 
@@ -60,10 +64,20 @@ class ContentBasedRecommender:
             products.append(get_product_id(similar_items_filtered[i][0]))
         return products
 
+class ReviewBasedRecommender:
+    MODEL_NAME = "Review-Based"
+    def __init__(self):
+        self.features = get_review_score()
+    def get_recommendation(self):
+        products = []
+        for item in self.features:
+            products.append(item.product_id)
+        return products
+
 class PopularityBasedRecommender:
     MODEL_NAME = "Popularity-Based"
     def __init__(self):
-        self.features = get_review_score()
+        self.features = get_sales_count()
     def get_recommendation(self):
         products = []
         for item in self.features:

@@ -15,25 +15,46 @@
   <!-- Material Design Bootstrap -->
   <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/icon?family=Material+Icons' %}"rel="stylesheet">
   <style type="text/css">
-    #recommend {
-      height : 850px;
-      width : 200px;
-      border: 3px outset rgba(43,116,164,0.74);
+    #recommend1 {
+      position : absolute;
+      top : 80px;
+      left : 15px;
+      text-align : center;
+      border: 3px outset #87847F;;
       border-radius: 6px;
       
     }
+    #navbar{
+      position: absolute;
+      top: 200px;
+      display: inline-block;
+      
+    }
+
+    #recommend2 {
+      position : absolute;
+      top : 80px;
+      right: 15px;
+      text-align : center;
+      border: 3px outset #87847F;;
+      border-radius: 6px;
+    }
     #main {
       position : absolute;
-      top : 120px;
-      width : 920px;
-      left : 420px;
+      top : 85px;
+      width : 1100px;
+      left : 410px;
+      outline: 2px inset #87847F;;
+      outline-offset: 2px;
     }
     #line {
-      height: 10px;
+      height: 5px;
 	    border: 0;
-	    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+	    box-shadow: 0 10px 10px -10px #87847F inset;
+    
     }
 
   </style>
@@ -45,63 +66,19 @@
   <!--Main layout-->
   <main>
     <div class="container">
-
-      <!--Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
-
-        <!-- Navbar brand -->
-        <span class="navbar-brand">Categories:</span>
-
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-
-          <!-- Links -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">All
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
-            </li>
-
-          </ul>
-          <!-- Links -->
-
-          <form class="form-inline">
-            <div class="md-form my-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            </div>
-          </form>
-        </div>
-        <!-- Collapsible content -->
-
-      </nav>
-      <!--/.Navbar-->
-
+      
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
-      <div id="recommend">
-      <h2><strong>Most Rated Products</strong></h2>
+      <div id="recommend1">
+      <h2><strong>MOST RATED PRODUCTS</strong></h2>
       <hr id="line">
       {% Popular_item as items %}
       {% for item in items %}
       <li><a href="{{ item.get_absolute_url }}" >{{item.product_name}}</a></li>
       {% endfor %}
-    </div>
+      
+      </div>
+      
 
         <!--Grid row-->
         <div  id="main" class="row wow fadeIn">
@@ -115,8 +92,160 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <img src="{%static 'https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg' %}" class="card-img-top"
+                {% if Product.product_category == "perfumery" %}
+                  <img src="{%static 'img/perfumery.jpeg' %}" class="card-img-top"
                   alt="">
+                {% endif %}
+                {% if Product.product_category == "art" %}
+                  <img src="{%static 'img/art.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "sports_leisure" %}
+                  <img src="{%static 'img/sports.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "baby" %}
+                  <img src="{%static 'img/baby.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "housewares" %}
+                  <img src="{%static 'img/housewares.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "musical_instruments" %}
+                  <img src="{%static 'img/musical.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "cool_stuff" %}
+                  <img src="{%static 'img/cool.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "furniture_decor" %}
+                  <img src="{%static 'img/furniture.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "home_appliances" %}
+                  <img src="{%static 'img/homeappliances.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "toys" %}
+                  <img src="{%static 'img/toys.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "bed_bath_table" %}
+                  <img src="{%static 'img/bedbath.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "construction_tools_safety" %}
+                  <img src="{%static 'img/constructionsafety.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "computers_accessories" %}
+                  <img src="{%static 'img/computeraccesories.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "health_beauty" %}
+                  <img src="{%static 'img/healthbeauty.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "luggage_accessories" %}
+                  <img src="{%static 'img/luggage.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "garden_tools" %}
+                  <img src="{%static 'img/gardentools.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "office_furniture" %}
+                  <img src="{%static 'img/officefurniture.jpg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "auto" %}
+                  <img src="{%static 'img/auto.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "electronics" %}
+                  <img src="{%static 'img/electronics.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "fashion_shoes" %}
+                  <img src="{%static 'img/fashionshoes.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "telephony" %}
+                  <img src="{%static 'img/telephony.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "stationery" %}
+                  <img src="{%static 'img/stationery.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "fashion_bags_accessories" %}
+                  <img src="{%static 'img/fashionbags.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "computers" %}
+                  <img src="{%static 'img/computers.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "home_construction" %}
+                  <img src="{%static 'img/homeconstruction.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "watches_gifts" %}
+                  <img src="{%static 'img/watch.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "construction_tools_construction" %}
+                  <img src="{%static 'img/constructiontools.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "pet_shop" %}
+                  <img src="{%static 'img/petshop.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "small_appliances" %}
+                  <img src="{%static 'img/smallappliances.jpg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "agro_industry_and_commerce" %}
+                  <img src="{%static 'img/agroindustry.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "furniture_living_room" %}
+                  <img src="{%static 'img/furniturelivingroom.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "signaling_and_security" %}
+                  <img src="{%static 'img/signaling.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "air_conditioning" %}
+                  <img src="{%static 'img/airconditioning.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "consoles_games" %}
+                  <img src="{%static 'img/consolegames.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "books_general_interest" %}
+                  <img src="{%static 'img/books.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "construction_tools_tools" %}
+                  <img src="{%static 'img/constructiontools.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "fashion_underwear_beach" %}
+                  <img src="{%static 'img/fashionbeach.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                {% if Product.product_category == "fashion_male_clothing" %}
+                  <img src="{%static 'img/fashionmale.jpeg' %}" class="card-img-top"
+                  alt="">
+                {% endif %}
+                
+
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
@@ -168,19 +297,8 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 
-  </script>
 </body>
 
 </html>
