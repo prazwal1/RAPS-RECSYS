@@ -1,3 +1,7 @@
+
+
+
+
 $('.buy').click(function(){
     $('.bottom').addClass("clicked");
   });
@@ -5,3 +9,5 @@ $('.buy').click(function(){
   $('.remove').click(function(){
     $('.bottom').removeClass("clicked");
   });
+
+

@@ -8,38 +8,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Recommender</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static 'https://use.fontawesome.com/releases/v5.11.2/css/all.css' %}">
 
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
    <style type="text/css">
-    #recommend {
+   #recommend1 {
+      color: #3bb4e5;
+      background-color: transparent;
+      padding: 20px;
       position : absolute;
-      top : 120px;
-      left : 30px;
+      top : 80px;
+      left : 15px;
       text-align : center;
-      border: 3px outset rgba(43,116,164,0.74);
+      width: 350px;
+      border: 3px outset #3bb4e5;
       border-radius: 6px;
       
     }
-    #main {
-      position : absolute;
-      top : 125px;
-      width : 1200px;
-      height : 542px;
-      left : 420px;
-      outline: 2px inset #2B74A4;
-      outline-offset: 2px;
-      border: 2px dashed rgba(50,134,190,0.52);
-    }
-    #line {
-      height: 10px;
-	    border: 0;
-	    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+    #navbar{
+      position: absolute;
+      top: 200px;
+      display: inline-block;
+      
     }
 
+    #recommend2 {
+      color: #3bb4e5;
+      background-color: transparent;
+      padding: 20px;
+      position : absolute;
+      top : 80px;
+      right: 15px;
+      width: 350px;
+      text-align : center;
+      border: 3px outset #3bb4e5;
+      border-radius: 6px;
+    }
+    #main {
+      padding: 20px;
+      background-color: transparent;
+      position : absolute;
+      top : 85px;
+      width : 1100px;
+      left : 410px;
+      outline: 2px outset #3bb4e5;
+      outline-offset: 2px;
+    }
+    #line {
+      height: 3px;
+      border: 0;
+      background-color: #3bb4e5;
+    
+    }
+    #vt {
+      position: absolute;
+      top: -18px;
+      left: 400px;
+      height: 92px;
+      width: 3px;
+      border: 0;
+      background-color: #3bb4e5;
+
+    }
+
+
+   #card {
+     height: 350px;
+     padding: 5px;
+     border: 2px outset #3bb4e5;
+     background-color: transparent;
+   }
+   #card:hover{
+     color: white;
+     height: 380px;
+     width: 110%;
+     padding: 8px;
+     background-color: #3bb4e5;
+   }
+   #about {
+    padding-top: 20px;
+    padding-left: 0px;
+    height: 90px;
+    width: 1100px;
+    line-height: 5px;
+    font-size: 20px;
+    position:absolute;
+    top: 3880px;
+    left: 395px;
+    background-color: transparent;
+    outline: 2px outset #3bb4e5;
+    outline-offset: 2px;
+   }
+   #creator {
+    outline: 2px outset #3bb4e5;
+    outline-offset: 2px;
+    width: 680px;
+     padding-top: 15px;
+     line-height: 2px;
+     text-align: center;
+     font-size: 15px;
+     top: 10px;
+     position: absolute;
+     left: 410px;
+   }
+
     #button {
+       
        display: inline-block;
        padding: 15px 25px;
        font-size: 14px;
@@ -59,27 +138,83 @@
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+    
   } 
+  #home {
+    color:#3bb4e5;
+    background:transparent;
+    border-width:2px;
+    border-style: solid;
+    border-color: #3bb4e5;
+    position:relative;
+    margin:5px;
+    display:inline-block;
+    padding:0.5em 1em;
+    transition:all 0.3s ease-in-out;
+    text-align:center;
+    font-family:comfortaa;
+    font-weight:bold;
+  }
+    #home:before, #home:after {
+    content:'';
+    display:block;
+    position:absolute;
+    border-color:#3bb4e5;
+    box-sizing:border-box;
+    border-style:solid;
+    width:1em;
+    height:1em;
+    transition:all 0.3s ease-in-out
+  }
+  #home:before {
+    top:-6px;
+    left:-6px;
+    border-width:2px 0 0 2px;
+    z-index:5;
+  }
+  #home:after {
+    bottom:-6px;
+    right:-6px;
+    border-width:0 2px 2px 0;
+  }
+  #home:hover:before,#home:hover:after {
+    width:calc(100% + 12px);
+    height:calc(100% + 12px);
+    border-color:#3bb4e5;
+    transform: rotateY(180deg);
+  }
+  #home:hover {
+    color:#3bb4e5;
+    background-color:transparent;
+    border-color:#3bb4e5;
+  }
+
+
+
   
   </style>
 </head>
 
-<body>
-      
 
- 
+<body>
+  <div>
+   <a href="{% url 'home' %}"> <button id="home">Home</button></a>
+    </div>
+
+
   <!--Main layout-->
+
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-     <div id="recommend">
+     <div id="recommend1">
       <h2><strong>YOU MAY LIKE</strong></h2>
       <hr id="line">
       
       {% for product in object.recommend  %}
-      <div class="card">
+      <div class="card" id="card">
 
         <!--Card image-->
-        <div class="view overlay">
+        <div  class="view overlay">
           {% if product.product_category == "perfumery" %}
             <img src="{%static 'img/perfumery.jpeg' %}" class="card-img-top"
             alt="">
@@ -238,23 +373,25 @@
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
+      
         <!--Card image-->
 
         <!--Card content-->
         <div class="card-body text-center">
           <!--Category & Title-->
-          <a href="" class="grey-text">
+          <a href="" class="black-text">
             <h5>{{ product.product_category }}</h5>
           </a>
           <h5>
             <strong>
-              <a href="{{ product.get_absolute_url }}" class="dark-grey-text">{{ product.product_name }}
+              <a href="{{ product.get_absolute_url }}" class="black-text">{{ product.product_name }}
                 <span class="badge badge-pill danger-color">NEW</span>
               </a>
             </strong>
           </h5>
 
           <h4 class="font-weight-bold blue-text">
+            <h5><strong>Rating: </strong>{{product.get_review_score|floatformat:1}}/5.0</h5>
             <strong>${{product.price}}</strong>
           </h4>
 
@@ -263,17 +400,19 @@
         
 
       </div>
+      <br>
       <!--Card-->
       {% endfor %}
- 
       
       </div>
+
+      
 
       <!--Grid row-->
       <div id="main" class="row wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <div  class="col-md-6 mb-4">
 
         {% if object.product_category == "perfumery" %}
           <img src="{%static 'img/perfumery.jpeg' %}" class="card-img-top"
@@ -429,9 +568,7 @@
         {% endif %}
 
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
+    
         <div class="col-md-6 mb-4">
 
           <!--Content-->
@@ -452,7 +589,8 @@
                 <h4 class="font-weight-bold blue-text">
                   <strong>${{object.price}}</strong>
                 </h4>
-                <h5><strong>Rating: </strong>{{object.get_review_score}}/5</h5>
+                <h5><strong>Rating: </strong>{{object.get_review_score|floatformat:1}}/5.0</h5>
+<!-- partial -->
   
             </div>
             <div>
@@ -477,6 +615,13 @@
       <!--Grid row-->
 
     </div>
+
+
+
+
+
+
+          <!--Grid row-->
   </main>
   <!--Main layout-->
 
@@ -492,7 +637,11 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
   <!-- Initializations -->
+  <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js' %}"></script>
+  <script  src="{% static 'js/script.js' %}"></script>
   <script type="text/javascript">
+
+
     // Animations initialization
     new WOW().init();
 

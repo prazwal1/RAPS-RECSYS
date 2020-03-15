@@ -1,10 +1,8 @@
 from django.db import models
 from django.urls import reverse
-from django_random_queryset import RandomManager
 from .Recommender import ContentBasedRecommender,get_item_id
 # Create your models here.
 class Product(models.Model):
-    objects = RandomManager()
     product_id = models.CharField(max_length=150,db_index= True, primary_key= True)
     product_name = models.CharField(max_length=150)
     product_weight_g = models.FloatField()
@@ -18,7 +16,7 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('Productdetail', args=[str(self.pk)])
     class Meta:
-        ordering = ['?'] 
+        ordering = ['product_id'] 
     
 
     def get_review_score(self):
@@ -31,8 +29,8 @@ class Product(models.Model):
     
         return recommendation
 class Feature(models.Model):
-    objects = RandomManager()
     product_id = models.OneToOneField(Product,max_length=150,db_index= True, unique= True,on_delete=models.CASCADE)
+    #product_id = models.CharField(max_length = 150 , db_index = True, unique = True)
     product_index = models.IntegerField(primary_key=True)
     review_score = models.FloatField()
     seller_index = models.IntegerField()
